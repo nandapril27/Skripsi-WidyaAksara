@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.widyaaksara.R
 import com.example.widyaaksara.api.ApiClient
+import com.example.widyaaksara.dialog.PetunjukDialog
 import com.example.widyaaksara.model.Aksara
 import com.example.widyaaksara.model.AksaraResponse
 import retrofit2.Call
@@ -21,6 +22,7 @@ class MenulisSwaraActivity : AppCompatActivity() {
     private lateinit var imageAksara: ImageView
     private lateinit var imagePola: ImageView
     private lateinit var tvNamaAksara: TextView
+    private lateinit var ivPetunjuk: ImageView
 
     private var aksaraList: List<Aksara> = listOf()
     private var currentIndex = 0
@@ -34,6 +36,15 @@ class MenulisSwaraActivity : AppCompatActivity() {
         imageAksara = findViewById(R.id.imageAksara)
         imagePola = findViewById(R.id.card_menulis)
         tvNamaAksara = findViewById(R.id.tvNamaAksara)
+        ivPetunjuk = findViewById(R.id.ivPetunjuk)
+
+        // Event klik untuk tombol Petunjuk penulisan
+        ivPetunjuk .setOnClickListener {
+            if (aksaraList.isNotEmpty()) {
+                val aksara = aksaraList[currentIndex]
+                PetunjukDialog(this, aksara.nama, aksara.gambar_pola).show()
+            }
+        }
 
         fetchAksaraData()
 

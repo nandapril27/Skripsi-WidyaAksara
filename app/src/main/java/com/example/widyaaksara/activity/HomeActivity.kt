@@ -2,6 +2,7 @@ package com.example.widyaaksara.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -54,6 +55,14 @@ class HomeActivity : AppCompatActivity() {
                     Toast.makeText(this, "$menuName clicked", Toast.LENGTH_SHORT).show()
                 }
             }
+
+            // Menangani klik pada ImageView Info Pembuat
+            val ivInfoPembuat = findViewById<ImageView>(R.id.ivInfoPembuat)
+            ivInfoPembuat.setOnClickListener {
+                val intent = Intent(this, InformasiPembuatActivity::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 }

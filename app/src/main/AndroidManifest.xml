@@ -35,6 +35,9 @@
         <!-- Home -->
         <activity android:name=".activity.HomeActivity" android:exported="true" />
 
+        <!-- Informasi Pembuat-->
+        <activity android:name=".activity.InformasiPembuatActivity" android:exported="true" />
+
         <!-- Materi -->
         <activity android:name=".activity.MateriActivity" android:exported="true" />
         <!-- Materi Pengenalan -->
