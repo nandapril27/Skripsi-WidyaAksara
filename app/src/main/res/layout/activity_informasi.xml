@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E3F2FD">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/asset_logo" />
+
+    <TextView
+        android:id="@+id/tvMateri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="40dp"
+        android:text="Informasi"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/garis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvMateri"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/asset_garis" />
+
+    <!-- Informasi -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/garis"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/asset_card_informasi" />
+
+    <!-- Ilustrasi -->
+    <ImageView
+        android:id="@+id/illustrationImage"
+        android:layout_width="404dp"
+        android:layout_height="266dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-72dp"
+        android:src="@drawable/asset_ilustrasi" />
+</RelativeLayout>

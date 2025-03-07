@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E3F2FD">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/asset_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.198"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMateri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aksara Swara"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="30dp" />
+
+    <!-- Tombol Validasi -->
+    <Button
+        android:id="@+id/btnValidasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Validasi"
+        app:layout_constraintTop_toTopOf="@id/tvMateri"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="30dp" />
+
+    <ImageView
+        android:id="@+id/garis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/asset_garis"
+        app:layout_constraintTop_toBottomOf="@id/tvMateri"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="6dp" />
+
+    <TextView
+        android:id="@+id/tvvokal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Vokal)"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/garis"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="2dp" />
+
+    <!-- CardView Aksara -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardAksara"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        app:cardBackgroundColor="@color/blue"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvvokal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Tombol Back -->
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/asset_back_menulis"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp" />
+
+            <!-- Gambar Aksara -->
+            <ImageView
+                android:id="@+id/imageAksara"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="6dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="Gambar Aksara"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnNext"
+                app:layout_constraintStart_toEndOf="@id/btnBack"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.092" />
+
+            <!-- Nama Aksara -->
+            <TextView
+                android:id="@+id/tvNamaAksara"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="a"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@id/imageAksara"
+                app:layout_constraintStart_toStartOf="@id/imageAksara"
+                app:layout_constraintEnd_toEndOf="@id/imageAksara"
+                android:gravity="center"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Tombol Next -->
+            <ImageButton
+                android:id="@+id/btnNext"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/asset_next_menulis"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="8dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- CardView Pola Aksara -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMenulis"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardAksara">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Gambar Pola sebagai latar belakang -->
+            <ImageView
+                android:id="@+id/imagePola"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:layout_margin="30dp"
+                android:contentDescription="Gambar Pola" />
+
+            <!-- CanvasView sebagai lapisan atas -->
+            <com.example.widyaaksara.view.CanvasView
+                android:id="@+id/canvasView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:elevation="20dp"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </FrameLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

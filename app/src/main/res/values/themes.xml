@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme -->
+    <style name="Base.Theme.WidyaAksara" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- Warna utama aplikasi -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryContainer">@color/blue</item>
+        <item name="colorSecondary">@color/blue</item>
+        <item name="colorTertiary">@color/blue</item>
+
+        <!-- Warna teks di dalam button -->
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <!-- Tema aplikasi utama -->
+    <style name="Theme.WidyaAksara" parent="Base.Theme.WidyaAksara" />
+</resources>

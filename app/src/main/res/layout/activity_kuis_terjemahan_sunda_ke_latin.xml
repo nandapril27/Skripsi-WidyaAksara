@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E3F2FD">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/asset_logo" />
+
+    <TextView
+        android:id="@+id/tvMateri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="30dp"
+        android:text="Kuis Terjemahan"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/garis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvMateri"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/asset_garis" />
+
+    <ImageView
+        android:id="@+id/card_judul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/garis"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
+        android:src="@drawable/asset_sunda_ke_latin" />
+
+    <!-- CardView untuk menampilkan soal -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_soal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_judul"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@color/blue"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/soalImage"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:padding="12dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:visibility="gone"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Pilihan Jawaban -->
+    <Button
+        android:id="@+id/btnA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="@color/blue"
+        android:layout_below="@id/card_soal"
+        android:text="A" />
+
+    <Button
+        android:id="@+id/btnB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/blue"
+        android:layout_below="@id/btnA"
+        android:text="B" />
+
+    <Button
+        android:id="@+id/btnC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/blue"
+        android:layout_below="@id/btnB"
+        android:text="C" />
+
+    <Button
+        android:id="@+id/btnD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="14dp"
+        android:backgroundTint="@color/blue"
+        android:layout_below="@id/btnC"
+        android:text="D"/>
+
+    <!-- Button Selanjutnya -->
+    <ImageView
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnD"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:src="@drawable/asset_next_pg"
+        android:clickable="true"
+        android:focusable="true" />
+
+</RelativeLayout>

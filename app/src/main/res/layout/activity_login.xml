@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E3F2FD">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/asset_logo" />
+
+    <TextView
+        android:id="@+id/tvLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="30dp"
+        android:text="Login"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/garis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLogin"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/asset_garis" />
+
+
+    <EditText
+        android:id="@+id/etNIS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLogin"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="NIS"
+        android:backgroundTint="#E3E7ED"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <!-- Input Nama -->
+    <EditText
+        android:id="@+id/etNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etNIS"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Nama"
+        android:backgroundTint="#E3E7ED"
+        android:padding="12dp"
+        android:textSize="16sp" />
+
+    <!-- Tombol Login -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_rounded"
+        android:padding="8dp"
+        android:layout_below="@id/etNama"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="Login"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <!-- Container untuk kedua logo -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnLogin"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <!-- Logo SMK 3 -->
+        <ImageView
+            android:id="@+id/imgLeft"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/asset_logo_smk3"
+            android:contentDescription="Left Image"
+            android:layout_marginEnd="20dp" />
+
+        <!-- Logo Uniku -->
+        <ImageView
+            android:id="@+id/imgRight"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/asset_logo_uniku"
+            android:contentDescription="Right Image" />
+    </LinearLayout>
+
+
+</RelativeLayout>

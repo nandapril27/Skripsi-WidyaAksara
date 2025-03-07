@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E3F2FD">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="match_parent"
+        android:layout_height="219dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/asset_splashscreen" />
+
+    <!-- Ilustrasi -->
+    <ImageView
+        android:id="@+id/illustrationImage"
+        android:layout_width="404dp"
+        android:layout_height="266dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-41dp"
+        android:src="@drawable/asset_ilustrasi" />
+</RelativeLayout>
