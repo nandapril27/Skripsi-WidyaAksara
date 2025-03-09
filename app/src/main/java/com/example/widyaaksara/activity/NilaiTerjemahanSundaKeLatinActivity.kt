@@ -65,11 +65,14 @@ class NilaiTerjemahanSundaKeLatinActivity : AppCompatActivity() {
                     Log.d("API Response", "Data API: $nilaiList")
 
                     if (nilaiList.isNotEmpty()) {
-                        // Perbarui adapter dengan data terbaru
+                        // Hapus data lama sebelum update (agar tidak menumpuk data lama)
+                        adapter.updateData(emptyList())
+
+                        // Tambahkan data baru
                         adapter.updateData(nilaiList)
 
                         recyclerView.post {
-                            recyclerView.scrollToPosition(0)
+                            recyclerView.smoothScrollToPosition(0)
                         }
 
                     } else {
