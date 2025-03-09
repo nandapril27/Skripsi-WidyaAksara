@@ -22,6 +22,7 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.Random
 
 class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
 
@@ -63,7 +64,8 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val kuisResponse = response.body()
                     if (kuisResponse?.success == true) {
-                        kuisList = kuisResponse.data
+                        // Mengacak daftar soal sebelum ditampilkan
+                        kuisList = kuisResponse.data.shuffled(Random(System.currentTimeMillis()))
                         if (kuisList.isNotEmpty()) {
                             tampilkanSoal()
                         } else {
