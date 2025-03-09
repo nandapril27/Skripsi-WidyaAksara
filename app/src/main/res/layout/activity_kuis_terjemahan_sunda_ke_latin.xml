@@ -25,6 +25,19 @@
         android:textSize="24sp"
         android:textStyle="bold" />
 
+    <!-- Timer -->
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tvMateri"
+        android:layout_marginStart="92dp"
+        android:layout_toEndOf="@id/tvMateri"
+        android:text="00:30"
+        android:textColor="#D32F2F"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/garis"
         android:layout_width="wrap_content"

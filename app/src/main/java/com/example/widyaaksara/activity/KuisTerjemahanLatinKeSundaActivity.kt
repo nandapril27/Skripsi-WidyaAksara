@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -32,6 +33,9 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
     private lateinit var btnC: ImageView
     private lateinit var btnD: ImageView
     private lateinit var btnNext: ImageView
+    private lateinit var timerTextView: TextView
+    private lateinit var countDownTimer: CountDownTimer
+    private val totalTimeInMillis: Long = 30 * 60 * 1000  // 30 menit dalam milidetik
 
     private var kuisList: List<KuisModel> = listOf()
     private var currentIndex = 0
@@ -50,11 +54,29 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
         btnC = findViewById(R.id.btnC)
         btnD = findViewById(R.id.btnD)
         btnNext = findViewById(R.id.btnNext)
+        timerTextView = findViewById(R.id.tvTimer)
 
         btnNext.setOnClickListener { nextSoal() }
         btnNext.visibility = View.GONE
 
+        startTimer() // Mulai timer saat activity dimulai
         getKuisData()
+    }
+
+    private fun startTimer() {
+        countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = (millisUntilFinished / 1000) / 60
+                val seconds = (millisUntilFinished / 1000) % 60
+                timerTextView.text = String.format("%02d:%02d", minutes, seconds)
+            }
+
+            override fun onFinish() {
+                // Ketika waktu habis, tampilkan skor dan akhiri kuis
+                Toast.makeText(this@KuisTerjemahanLatinKeSundaActivity, "Waktu habis!", Toast.LENGTH_SHORT).show()
+                selesaiKuis()
+            }
+        }.start()
     }
 
     private fun getKuisData() {
@@ -132,15 +154,22 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
             currentIndex++
             tampilkanSoal()
         } else {
-            val skorTotal = jumlahBenar * 5  // Kalkulasi nilai
-            val intent = Intent(this, SkorActivity::class.java)
-            intent.putExtra("JUMLAH_BENAR", jumlahBenar)
-            intent.putExtra("JUMLAH_SALAH", jumlahSalah)
-            intent.putExtra("SKOR_TOTAL", skorTotal) // Kirim skor total
-            startActivity(intent)
-            finish()
-            submitNilaiToAPI(skorTotal)
+            selesaiKuis()
         }
+    }
+
+    private fun selesaiKuis() {
+        countDownTimer.cancel() // Hentikan timer
+
+        val skorTotal = jumlahBenar * 5
+        val intent = Intent(this, SkorActivity::class.java)
+        intent.putExtra("JUMLAH_BENAR", jumlahBenar)
+        intent.putExtra("JUMLAH_SALAH", jumlahSalah)
+        intent.putExtra("SKOR_TOTAL", skorTotal)
+        startActivity(intent)
+        finish()
+
+        submitNilaiToAPI(skorTotal) // Simpan skor ke database
     }
 
     // Simpan Nilai Ke Database
