@@ -137,6 +137,7 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
             intent.putExtra("SKOR_TOTAL", skorTotal) // Kirim skor total
             startActivity(intent)
             finish()
+            submitNilaiToAPI(skorTotal)
         }
     }
 
@@ -162,8 +163,13 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
 
                     if (response.isSuccessful) {
                         Log.d("API_SUCCESS", "Nilai berhasil disimpan!")
+                        Toast.makeText(this@KuisTerjemahanLatinKeSundaActivity, "Nilai berhasil disimpan!", Toast.LENGTH_SHORT).show()
 
-                        val intent = Intent(this@KuisTerjemahanLatinKeSundaActivity, SkorActivity::class.java)
+                        // Pindah ke SkorActivity sambil membawa data jumlah benar, salah, dan skor total
+                        val intent = Intent(
+                            this@KuisTerjemahanLatinKeSundaActivity,
+                            SkorActivity::class.java
+                        )
                         intent.putExtra("JUMLAH_BENAR", jumlahBenar)
                         intent.putExtra("JUMLAH_SALAH", jumlahSalah)
                         intent.putExtra("SKOR_TOTAL", nilai)

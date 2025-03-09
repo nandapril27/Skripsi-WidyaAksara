@@ -10,6 +10,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -29,6 +30,7 @@ interface ApiService {
     //Nilai Kuis Aksara Ke Latin
     @POST("nilai-kuis")
     fun simpanNilai(@Body nilaiRequest: NilaiRequest): Call<ResponseBody>
+    @Headers("Cache-Control: no-cache")
     @GET("nilai-kuis/{NIS}")
     fun getNilaiKuis(@Path("NIS") NIS: String): Call<NilaiResponse>
 

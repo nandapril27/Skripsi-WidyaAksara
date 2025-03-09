@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.widyaaksara.R
 import com.example.widyaaksara.api.ApiClient
 import com.example.widyaaksara.model.NilaiRequest
-import com.example.widyaaksara.model.NilaiSimpan
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,11 +39,16 @@ class SkorActivity : AppCompatActivity() {
         // Simpan nilai ke SharedPreferences
         simpanNilaiKeSharedPreferences(skorTotal)
 
-        // Simpan nilai ke server (Latin ke Sunda)
-        simpanNilaiKeServer(skorTotal)
+        // Cek jenis kuis sebelum menyimpan ke server
+        val jenisKuis = intent.getStringExtra("JENIS_KUIS") ?: ""
 
-        // Simpan nilai ke server (Sunda ke Latin)
-        simpanNilaiKeServerSundaKeLatin(skorTotal)
+        if (jenisKuis == "latin_ke_aksara") {
+            simpanNilaiKeServer(skorTotal) // API untuk Latin ke Aksara
+        } else if (jenisKuis == "aksara_ke_latin") {
+            simpanNilaiKeServerSundaKeLatin(skorTotal) // API untuk Aksara ke Latin
+        } else {
+            println("DEBUG: Tidak ada jenis kuis yang valid!")
+        }
 
         btnMenu.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
@@ -127,5 +131,4 @@ class SkorActivity : AppCompatActivity() {
             }
         })
     }
-
 }

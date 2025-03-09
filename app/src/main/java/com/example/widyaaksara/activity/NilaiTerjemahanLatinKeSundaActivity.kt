@@ -60,19 +60,20 @@ class NilaiTerjemahanLatinKeSundaActivity : AppCompatActivity() {
             override fun onResponse(call: Call<NilaiResponse>, response: Response<NilaiResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     val nilaiList = response.body()?.data ?: emptyList()
-                    Log.d("API Response", "Data Nilai: ${response.body()}")
+                    Log.d("API Response", "Jumlah data dari API: ${nilaiList.size}")
+                    Log.d("API Response", "Data API: $nilaiList")
 
-                    if (::adapter.isInitialized) {
-                        if (adapter.itemCount != nilaiList.size) { // Hanya perbarui jika jumlah item berubah
-                            adapter.updateData(nilaiList)
-                            adapter.notifyDataSetChanged() // Tambahkan ini untuk memastikan RecyclerView diperbarui
-                        }
+                    if (nilaiList.isNotEmpty()) {
+                        // Perbarui adapter dengan data terbaru
+                        adapter.updateData(nilaiList)
+                        adapter.notifyDataSetChanged()
                     } else {
-                        adapter = NilaiAdapter(nilaiList)
-                        recyclerView.adapter = adapter
+                        Toast.makeText(this@NilaiTerjemahanLatinKeSundaActivity, "Tidak ada data nilai", Toast.LENGTH_SHORT).show()
                     }
                 } else {
-                    Log.e("API Error", "Gagal mengambil data: ${response.errorBody()?.string()}")
+                    Log.e("API Error", "Gagal mengambil data. Response code: ${response.code()}")
+                    Log.e("API Error", "Response body: ${response.errorBody()?.string()}")
+
                     Toast.makeText(this@NilaiTerjemahanLatinKeSundaActivity, "Gagal mengambil data nilai", Toast.LENGTH_SHORT).show()
                 }
             }

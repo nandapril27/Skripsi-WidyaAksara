@@ -40,7 +40,13 @@ class NilaiAdapter(private var nilaiList: List<NilaiKuis>) : RecyclerView.Adapte
 
     // Fungsi untuk memperbarui data dalam adapter
     fun updateData(newList: List<NilaiKuis>) {
+        println("DEBUG: Data sebelum diperbarui: $nilaiList")
+        println("DEBUG: Data baru yang diterima: $newList")
+
         nilaiList = newList
-        notifyItemInserted(newList.size - 1)// Memperbarui RecyclerView dengan data baru
+        notifyDataSetChanged() // Atau notifyItemRangeChanged(0, newList.size)
+
+        println("DEBUG: Data setelah diperbarui: $nilaiList")
     }
+
 }
