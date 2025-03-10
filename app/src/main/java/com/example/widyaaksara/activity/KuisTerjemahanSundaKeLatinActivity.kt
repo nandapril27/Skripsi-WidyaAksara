@@ -10,6 +10,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import android.os.CountDownTimer
 import android.widget.TextView
+import android.media.MediaPlayer
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -160,21 +163,49 @@ class KuisTerjemahanSundaKeLatinActivity : AppCompatActivity() {
         if (isAnswered) return
         isAnswered = true
 
-        val colorRes = if (jawabanUser == jawabanBenar) {
+        val mediaPlayer: MediaPlayer
+        val imageRes: Int
+        val colorRes: Int
+
+        if (jawabanUser == jawabanBenar) {
             skorBenar++
-            R.color.green
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound_benar) // Suara benar
+            imageRes = R.drawable.asset_notif_benar // Gambar jawaban benar
+            colorRes = R.color.green
         } else {
             skorSalah++
-            R.color.red
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound_salah) // Suara salah
+            imageRes = R.drawable.asset_notif_salah// Gambar jawaban salah
+            colorRes = R.color.red
         }
 
+        mediaPlayer.start() // Mainkan suara
         button.setBackgroundColor(ContextCompat.getColor(this, colorRes))
-        Toast.makeText(
-            this,
-            if (jawabanUser == jawabanBenar) "Jawaban Benar!" else "Jawaban Salah!",
-            Toast.LENGTH_SHORT
-        ).show()
-        btnNext.visibility = View.VISIBLE
+
+        // Tampilkan dialog dengan gambar
+        tampilkanDialogJawaban(imageRes)
+
+        // Lepaskan media player setelah selesai diputar
+        mediaPlayer.setOnCompletionListener { mp -> mp.release() }
+    }
+
+    private fun tampilkanDialogJawaban(imageRes: Int) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_feedback_kuis, null)
+        val dialogBuilder = android.app.AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+
+        val imgJawaban = dialogView.findViewById<ImageView>(R.id.imgJawaban)
+        imgJawaban.setImageResource(imageRes)
+
+        // Atur dialog agar otomatis hilang setelah 2 detik dan lanjut ke soal berikutnya
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            nextSoal()
+        }, 2000) // 2000ms = 2 detik
     }
 
     private fun nextSoal() {

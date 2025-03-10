@@ -1,6 +1,7 @@
 package com.example.widyaaksara.activity
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,6 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
@@ -73,7 +77,11 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 // Ketika waktu habis, tampilkan skor dan akhiri kuis
-                Toast.makeText(this@KuisTerjemahanLatinKeSundaActivity, "Waktu habis!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@KuisTerjemahanLatinKeSundaActivity,
+                    "Waktu habis!",
+                    Toast.LENGTH_SHORT
+                ).show()
                 selesaiKuis()
             }
         }.start()
@@ -91,10 +99,18 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
                         if (kuisList.isNotEmpty()) {
                             tampilkanSoal()
                         } else {
-                            Toast.makeText(this@KuisTerjemahanLatinKeSundaActivity, "Tidak ada soal tersedia", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@KuisTerjemahanLatinKeSundaActivity,
+                                "Tidak ada soal tersedia",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     } else {
-                        Toast.makeText(this@KuisTerjemahanLatinKeSundaActivity, "Gagal mendapatkan data!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@KuisTerjemahanLatinKeSundaActivity,
+                            "Gagal mendapatkan data!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 } else {
                     Log.e("KuisActivity", "Response gagal: ${response.errorBody()?.string()}")
@@ -103,7 +119,11 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<KuisResponse>, t: Throwable) {
                 Log.e("KuisActivity", "Error: ${t.message}")
-                Toast.makeText(this@KuisTerjemahanLatinKeSundaActivity, "Gagal terhubung ke server!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@KuisTerjemahanLatinKeSundaActivity,
+                    "Gagal terhubung ke server!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
@@ -131,22 +151,54 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
         btnD.setOnClickListener { cekJawaban("D", kuis.jawaban, btnD) }
     }
 
+
     private fun cekJawaban(jawabanUser: String, jawabanBenar: String, button: ImageView) {
         if (isAnswered) return
-
         isAnswered = true
+
+        val mediaPlayer: MediaPlayer
+        val imageRes: Int
+        val colorRes: Int
 
         if (jawabanUser == jawabanBenar) {
             jumlahBenar++
-            button.setBackgroundColor(ContextCompat.getColor(this, R.color.green))
-            Toast.makeText(this, "Jawaban Benar!", Toast.LENGTH_SHORT).show()
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound_benar) // Suara benar
+            imageRes = R.drawable.asset_notif_benar // Gambar jawaban benar
+            colorRes = R.color.green
         } else {
             jumlahSalah++
-            button.setBackgroundColor(ContextCompat.getColor(this, R.color.red))
-            Toast.makeText(this, "Jawaban Salah!", Toast.LENGTH_SHORT).show()
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound_salah) // Suara salah
+            imageRes = R.drawable.asset_notif_salah// Gambar jawaban salah
+            colorRes = R.color.red
         }
 
-        btnNext.visibility = View.VISIBLE
+        mediaPlayer.start() // Mainkan suara
+        button.setBackgroundColor(ContextCompat.getColor(this, colorRes))
+
+        // Tampilkan dialog dengan gambar
+        tampilkanDialogJawaban(imageRes)
+
+        // Lepaskan media player setelah selesai diputar
+        mediaPlayer.setOnCompletionListener { mp -> mp.release() }
+    }
+
+    private fun tampilkanDialogJawaban(imageRes: Int) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_feedback_kuis, null)
+        val dialogBuilder = android.app.AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+
+        val imgJawaban = dialogView.findViewById<ImageView>(R.id.imgJawaban)
+        imgJawaban.setImageResource(imageRes)
+
+        // Atur dialog agar otomatis hilang setelah 2 detik dan lanjut ke soal berikutnya
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+            nextSoal()
+        }, 2000) // 2000ms = 2 detik
     }
 
     private fun nextSoal() {
