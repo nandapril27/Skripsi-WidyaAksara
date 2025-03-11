@@ -2,6 +2,8 @@ package com.example.widyaaksara.activity
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -197,6 +199,9 @@ class KuisTerjemahanSundaKeLatinActivity : AppCompatActivity() {
 
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
+
+        // Atur background dialog
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.button_rounded)
 
         val imgJawaban = dialogView.findViewById<ImageView>(R.id.imgJawaban)
         imgJawaban.setImageResource(imageRes)

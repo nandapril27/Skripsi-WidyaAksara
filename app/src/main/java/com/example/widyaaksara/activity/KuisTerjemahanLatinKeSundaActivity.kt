@@ -191,6 +191,9 @@ class KuisTerjemahanLatinKeSundaActivity : AppCompatActivity() {
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
 
+        // Atur background dialog
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.button_rounded)
+
         val imgJawaban = dialogView.findViewById<ImageView>(R.id.imgJawaban)
         imgJawaban.setImageResource(imageRes)
 
