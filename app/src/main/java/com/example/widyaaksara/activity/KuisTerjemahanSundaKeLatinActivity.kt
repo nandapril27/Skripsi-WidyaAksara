@@ -50,6 +50,7 @@ class KuisTerjemahanSundaKeLatinActivity : AppCompatActivity() {
     private var isAnswered = false
     private var skorBenar = 0
     private var skorSalah = 0
+    private var isQuizFinished = false
 
     private lateinit var sharedPreferences: SharedPreferences
     private var nis: String? = null
@@ -223,15 +224,18 @@ class KuisTerjemahanSundaKeLatinActivity : AppCompatActivity() {
     }
 
     private fun selesaiKuis() {
+        if (isQuizFinished) return // Cegah pemanggilan berulang
+        isQuizFinished = true
+
         countDownTimer.cancel() // Hentikan timer
 
         val skorTotal = skorBenar * 5
-        val intent = Intent(this, SkorActivity::class.java)
-        intent.putExtra("JUMLAH_BENAR", skorBenar)
-        intent.putExtra("JUMLAH_SALAH", skorSalah)
-        intent.putExtra("SKOR_TOTAL", skorTotal)
-        startActivity(intent)
-        finish()
+//        val intent = Intent(this, SkorActivity::class.java)
+//        intent.putExtra("JUMLAH_BENAR", skorBenar)
+//        intent.putExtra("JUMLAH_SALAH", skorSalah)
+//        intent.putExtra("SKOR_TOTAL", skorTotal)
+//        startActivity(intent)
+//        finish()
 
         submitNilaiToAPI(skorTotal) // Simpan skor ke database
     }

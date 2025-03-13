@@ -58,6 +58,7 @@
 
     <!-- ScrollView hanya untuk RecyclerView -->
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollViewAksara"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
@@ -75,4 +76,17 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
     </androidx.core.widget.NestedScrollView>
 
+    <!-- Swipe -->
+    <TextView
+        android:id="@+id/tvSwipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="&lt;&lt; Geser disini &gt;&gt;"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/nestedScrollViewAksara"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

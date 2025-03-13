@@ -100,8 +100,8 @@
             <!-- Gambar Aksara -->
             <ImageView
                 android:id="@+id/imageAksara"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="6dp"
                 android:scaleType="fitCenter"
                 android:contentDescription="Gambar Aksara"
@@ -159,19 +159,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:orientation="vertical">
+            <!-- android:padding="20dp"-->
 
             <!-- Gambar Pola Menulis -->
             <ImageView
                 android:id="@+id/card_menulis"
-                android:layout_width="212dp"
-                android:layout_height="317dp"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
                 android:scaleType="fitCenter"
                 android:contentDescription="Gambar Pola"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"/>
+                app:layout_constraintEnd_toEndOf="parent"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

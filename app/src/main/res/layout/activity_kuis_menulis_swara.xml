@@ -160,9 +160,8 @@
             <ImageView
                 android:id="@+id/imagePola"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="350dp"
                 android:scaleType="fitCenter"
-                android:layout_margin="30dp"
                 android:contentDescription="Gambar Pola" />
 
             <!-- CanvasView sebagai lapisan atas -->

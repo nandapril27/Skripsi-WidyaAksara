@@ -76,36 +76,42 @@
                 android:padding="16dp"
                 android:gravity="center">
 
-                <TextView
-                    android:id="@+id/tvMateri"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.
-                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda."
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:textAlignment="center"
-                    android:paddingBottom="10dp" />
+                <!-- Tambahkan PDFView untuk menampilkan file PDF -->
+<!--                <com.github.barteksc.pdfviewer.PDFView-->
+<!--                    android:id="@+id/pdfView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="400dp" />-->
 
-                <ImageView
-                    android:id="@+id/imgMateri"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/aksara_angka_0"
-                    android:layout_gravity="center" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tvMateri"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
+<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda."-->
+<!--                    android:textColor="#FFFFFF"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:paddingBottom="10dp" />-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/imgMateri"-->
+<!--                    android:layout_width="200dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/aksara_angka_0"-->
+<!--                    android:layout_gravity="center" />-->
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
