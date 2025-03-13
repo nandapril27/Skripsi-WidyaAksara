@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginStart="30dp"
-        android:text="Pengenalan Aksara Sunda"
+        android:text="Pamekar Literasi"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -76,31 +76,34 @@
                 android:padding="16dp"
                 android:gravity="center">
 
-                <!-- Tambahkan PDFView untuk menampilkan file PDF -->
-<!--                <com.github.barteksc.pdfviewer.PDFView-->
-<!--                    android:id="@+id/pdfView"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="400dp" />-->
+                <!--Untuk Membaca txt-->
+                <TextView
+                    android:id="@+id/textViewMateri"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="4sp"
+                    android:textColor="@android:color/black"
+                    android:justificationMode="inter_word"/>
 
 <!--                <TextView-->
 <!--                    android:id="@+id/tvMateri"-->
 <!--                    android:layout_width="wrap_content"-->
 <!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda.-->
-<!--                    Aksara Sunda adalah aksara tradisional yang digunakan untuk menulis bahasa Sunda."-->
+<!--                    android:text="\n\n-->
+<!-- A. Pengertian Aksara Sunda-->
+<!--Aksara Sunda téh asalna tina aksara Brahmi ti India, leuwih jauhna deui tina aksara Pallawa. Dipakéna aksara Sunda téh dina prasasti, piagem jeung naskah kuna. Dumasar-->
+<!--kana catetan sajarah, aksara Sunda geus dipaké ku urang Sunda ti abad ka- 14. Prasasti anu maké aksara Sunda nya éta prasati Geger Hanjuang di Tasikmalaya jeung prasati Astana-->
+<!--Gedé di Kawali Ciamis. Piagem anu make aksara Sunda nya éta Pigem Kabantenan di Bekasi. Ari naskah kuna anu make aksara Sunda diantarana waé Carita Pakuan, Carita Parahyangan, Siksakandang Karesian jeung Amanat Galunggung.-->
+<!--Disawang tina wangun jeung sifatna, aksara Sunda kaasup aksara miengan (silabis), nyaéta hiji aksara ngalambangkeun saengang . Tangtu béda jeung aksara latén nu sifatna-->
+<!--misora (fonétis), nya éta hiji aksara ngalambangkeun hiji sora. Béda deui jeung aksara tionghoa anu sipatna milambang (logografis), nya éta hiji aksara ngalambangkeun hiji kecap.-->
+<!--\n\n-->
+<!--B. Mikawanoh Wangun Aksara Sunda-->
+<!--Aksara Sunda Kaganga miboga opat rupa wangun, diantarana nyaeta :  7 aksara swara (vocal), 23 aksara ngalagena (konsonan), 13 rarangkén (pananda sora), jeung 10 angka.-->
+<!--1.	Aksara Swara (aksara vokal)-->
+<!--Aksara swara (vokal) aya 7 rupa nyaéta a, i, u, é, o, e, jeung eu.-->
+<!--Contoh Aksara Swara :"-->
 <!--                    android:textColor="#FFFFFF"-->
 <!--                    android:textSize="16sp"-->
 <!--                    android:textAlignment="center"-->

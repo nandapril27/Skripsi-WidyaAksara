@@ -36,8 +36,7 @@ android {
 }
 
 dependencies {
-
-//    implementation ("com.github.barteksc:android-pdf-viewer:2.8.2")
+//    implementation ("com.github.barteksc:android-pdf-viewer:2.7.0")
     implementation ("com.google.code.gson:gson:2.8.9")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation ("androidx.core:core-ktx:1.12.0")
