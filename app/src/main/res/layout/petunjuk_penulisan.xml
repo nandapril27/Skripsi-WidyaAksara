@@ -30,7 +30,7 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Panduan Penulisan"
+                android:text="Panduan Penulisan\n\n"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="18sp"
@@ -43,13 +43,15 @@
                 android:id="@+id/tvInstructions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1. Perhatikan baik-baik huruf yang ditampilkan.\n\n2. Perhatikan urutan nomor coretan dan tanda panah di dalam huruf.\n\n3. Mulailah mencoret sesuai dengan urutan tahapan coretan."
+                android:text="\n1. Perhatikan baik-baik huruf yang ditampilkan.\n2. Perhatikan urutan nomor coretan dan tanda panah di dalam huruf.\n3. Mulailah mencoret sesuai dengan urutan tahapan coretan."
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="12dp"/>
+                android:layout_marginTop="12dp"
+                android:lineSpacingExtra="2sp"
+                android:justificationMode="inter_word"/>
 
             <!-- Gambar Petunjuk -->
             <ImageView

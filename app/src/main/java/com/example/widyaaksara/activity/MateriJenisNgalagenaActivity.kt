@@ -7,6 +7,7 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.RecyclerView
 import com.example.widyaaksara.R
 import com.example.widyaaksara.model.AksaraAdapter
@@ -72,17 +73,30 @@ class MateriJenisNgalagenaActivity : AppCompatActivity() {
                             // Geser ke kanan -> Buka MateriJenisNgalagenaActivity
                             val intent = Intent(this@MateriJenisNgalagenaActivity, MateriJenisSwaraActivity ::class.java)
                             startActivity(intent)
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                            finish()
                         } else {
                             // Geser ke kiri -> Buka kembali MateriJenisSwaraActivity
                             val intent = Intent(this@MateriJenisNgalagenaActivity, MateriJenisAngkaActivity::class.java)
                             startActivity(intent)
-                            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                            finish()
                         }
                         return true
                     }
                 }
                 return false
+            }
+        })
+
+        // Tangani tombol back bawaan Android
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val intent = Intent(this@MateriJenisNgalagenaActivity, MateriActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish() // Tutup activity ini
             }
         })
     }

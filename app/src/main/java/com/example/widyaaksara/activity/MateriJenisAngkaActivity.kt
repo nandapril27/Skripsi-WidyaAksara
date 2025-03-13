@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -60,17 +61,27 @@ class MateriJenisAngkaActivity : AppCompatActivity() {
                             // Geser ke kanan -> Buka MateriJenisNgalagenaActivity
                             val intent = Intent(this@MateriJenisAngkaActivity, MateriJenisNgalagenaActivity ::class.java)
                             startActivity(intent)
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
                         } else {
                             // Geser ke kiri -> Buka kembali MateriJenisSwaraActivity
                             val intent = Intent(this@MateriJenisAngkaActivity, MateriJenisRarangkenActivity::class.java)
                             startActivity(intent)
-                            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
                         }
                         return true
                     }
                 }
                 return false
+            }
+        })
+        // Tangani tombol back bawaan Android
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val intent = Intent(this@MateriJenisAngkaActivity, MateriActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+                finish() // Tutup activity ini
             }
         })
     }
