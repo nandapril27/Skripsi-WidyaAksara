@@ -1,9 +1,6 @@
 package com.example.widyaaksara.activity
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.transition.Transition
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -13,8 +10,6 @@ import android.widget.Toast
 import android.graphics.PointF
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
-import com.bumptech.glide.request.target.CustomTarget
 import com.example.widyaaksara.R
 import com.example.widyaaksara.api.ApiClient
 import com.example.widyaaksara.model.Aksara
@@ -28,6 +23,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.math.pow
 import kotlin.math.sqrt
+import kotlin.math.abs
+
 
 class KuisMenulisSwaraActivity : AppCompatActivity() {
     private lateinit var btnNext: ImageButton
@@ -294,11 +291,23 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
             var intersections = 0
             val size = referencePoints.size
 
+            Log.d("PIP", "Memeriksa titik pengguna: (${userPoint.x}, ${userPoint.y})")
+
             for (i in 0 until size) {
                 val v1 = referencePoints[i]
                 val v2 = referencePoints[(i + 1) % size]
 
-                // Cek apakah garis horizontal dari titik memotong sisi poligon
+                // Pengecekan apakah titik pengguna berada di vertex (sudut) dari poligon
+                if ((userPoint.x == v1.x && userPoint.y == v1.y) || (userPoint.x == v2.x && userPoint.y == v2.y)) {
+                    return true // Titik berada di vertex, langsung dianggap valid
+                }
+
+                // Pengecekan apakah titik pengguna berada di garis tepi (boundary) poligon
+                if (isPointOnLineSegment(userPoint, v1, v2, tolerance)) {
+                    return true // Titik berada di boundary, langsung dianggap valid
+                }
+
+                // Pengecekan apakah garis horizontal dari titik memotong sisi poligon (Ray-Casting)
                 if ((v1.y > userPoint.y) != (v2.y > userPoint.y)) {
                     val intersectX = v1.x + (userPoint.y - v1.y) * (v2.x - v1.x) / (v2.y - v1.y)
                     if (userPoint.x < intersectX) {
@@ -322,7 +331,7 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
 
         // Pastikan setidaknya 70% titik pengguna cocok dengan referensi
         val accuracy = correctPoints.toFloat() / userPoints.size
-        return accuracy >= 0.7
+        return accuracy >= 0.8
     }
 
     // Fungsi untuk menghitung jarak antara dua titik
@@ -330,5 +339,18 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
         return sqrt((p1.x - p2.x).pow(2) + (p1.y - p2.y).pow(2))
     }
 
+    // Function untuk Pengecekan apakah titik pengguna berada di garis tepi (boundary) poligon
+    fun isPointOnLineSegment(p: PointF, a: PointF, b: PointF, tolerance: Float): Boolean {
+        val crossProduct = (p.y - a.y) * (b.x - a.x) - (p.x - a.x) * (b.y - a.y)
+        if (abs(crossProduct) > tolerance) return false  // Jika tidak sejajar, berarti bukan di garis
+
+        val dotProduct = (p.x - a.x) * (b.x - a.x) + (p.y - a.y) * (b.y - a.y)
+        if (dotProduct < 0) return false  // Jika titik berada sebelum titik pertama
+
+        val squaredLengthBA = (b.x - a.x).pow(2) + (b.y - a.y).pow(2)
+        if (dotProduct > squaredLengthBA) return false  // Jika titik berada setelah titik kedua
+
+        return true  // Jika lolos semua kondisi, titik berada di garis tepi (boundary)
+    }
 
 }

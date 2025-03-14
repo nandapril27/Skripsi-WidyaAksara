@@ -49,26 +49,3 @@ object JsonHelper {
         return loadJsonFromAssets(context, "pola_aksara_ngalagena.json")
     }
 }
-
-
-//object JsonHelper {
-//    fun loadJsonFromAssets(context: Context, filename: String): String? {
-//        return try {
-//            context.assets.open(filename).bufferedReader().use { it.readText() }
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//            null
-//        }
-//    }
-//
-//    fun parseAksaraJson(context: Context, fileName: String): List<AksaraModel>? {
-//        return try {
-//            val jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
-//            val listType = object : TypeToken<List<AksaraModel>>() {}.type
-//            Gson().fromJson(jsonString, listType)
-//        } catch (e: IOException) {
-//            e.printStackTrace()
-//            null
-//        }
-//    }
-//}
