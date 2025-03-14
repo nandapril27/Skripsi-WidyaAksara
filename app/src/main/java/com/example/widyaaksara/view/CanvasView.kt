@@ -23,7 +23,7 @@ class CanvasView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         strokeWidth = 8f
         style = Paint.Style.FILL
     }
-    private val path = Path()
+    private var path = Path()
     private val paths = mutableListOf<Path>()  // Simpan history path yang digambar pengguna
     private val userPoints = mutableListOf<Titik>()
     private var referencePoints: List<Titik> = listOf()
@@ -88,7 +88,9 @@ class CanvasView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             MotionEvent.ACTION_UP -> {
                 Log.d("CanvasView", "Selesai menggambar")
                 paths.add(Path(path)) // Simpan path agar tidak hilang
-                path.reset()  // Reset path sementara
+                path = Path() // Buat Path baru agar path yang lama tetap tersimpan
+//                path.reset()  // Reset path sementara
+
             }
         }
         invalidate()
