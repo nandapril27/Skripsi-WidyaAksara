@@ -8,7 +8,7 @@
         android:id="@+id/logo"
         android:layout_width="242dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/asset_logo" />
 
@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/logo"
         android:layout_marginTop="24dp"
-        android:layout_marginStart="40dp"
-        android:text="Informasi Pembuat"
+        android:layout_marginStart="30dp"
+        android:text="Tentang Aplikasi"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvMateri"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="24dp"
         android:src="@drawable/asset_garis" />
@@ -37,11 +37,13 @@
     <!-- Informasi -->
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/garis"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/button_rounded"
         android:src="@drawable/asset_card_informasi" />
 
     <!-- Ilustrasi -->

@@ -9,7 +9,7 @@
         android:id="@+id/logo"
         android:layout_width="242dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/asset_logo" />
 
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/logo"
         android:layout_marginTop="24dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:text="Informasi Modul Ajar"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvMateri"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="6dp"
         android:layout_marginBottom="24dp"
         android:src="@drawable/asset_garis" />

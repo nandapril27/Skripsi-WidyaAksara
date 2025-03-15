@@ -4,20 +4,31 @@
     android:layout_height="match_parent"
     android:background="#E3F2FD">
 
+    <!-- Ilustrasi Batik-->
+    <ImageView
+        android:id="@+id/illustrationBatik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-31dp"
+        android:src="@drawable/asset_ilustrasi_batik2" />
+
     <!-- Logo -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="match_parent"
         android:layout_height="219dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:src="@drawable/asset_splashscreen" />
 
     <!-- Ilustrasi -->
     <ImageView
         android:id="@+id/illustrationImage"
-        android:layout_width="404dp"
-        android:layout_height="266dp"
+        android:layout_width="match_parent"
+        android:layout_height="272dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-41dp"
-        android:src="@drawable/asset_ilustrasi" />
+        android:layout_marginBottom="-47dp"
+        android:src="@drawable/asset_ilustrasi2" />
 </RelativeLayout>

@@ -329,7 +329,7 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
             }
         }
 
-        // Pastikan setidaknya 70% titik pengguna cocok dengan referensi
+        // Pastikan setidaknya 80% titik pengguna cocok dengan referensi
         val accuracy = correctPoints.toFloat() / userPoints.size
         return accuracy >= 0.8
     }
