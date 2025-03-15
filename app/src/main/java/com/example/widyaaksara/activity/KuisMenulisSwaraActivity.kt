@@ -8,6 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import android.graphics.PointF
+import android.media.MediaPlayer
+import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.widyaaksara.R
@@ -25,7 +29,6 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.math.abs
 
-
 class KuisMenulisSwaraActivity : AppCompatActivity() {
     private lateinit var btnNext: ImageButton
     private lateinit var btnBack: ImageButton
@@ -34,12 +37,16 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
     private lateinit var tvNamaAksara: TextView
     private lateinit var imageAksara: ImageView
     private lateinit var btnValidasi: Button
+    private lateinit var tvTimer: TextView
+    private lateinit var runnable: Runnable
 
     private var aksaraList: List<Aksara> = listOf()
     private var aksaraSwaraList: List<AksaraModel> = listOf()
     private var currentIndex = 0
     private var currentAksara: AksaraModel? = null
-
+    private var totalTime = 600000L // 10 menit dalam milidetik
+    private var remainingTime = totalTime
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +59,8 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
         tvNamaAksara = findViewById(R.id.tvNamaAksara)
         imageAksara = findViewById(R.id.imageAksara)
         btnValidasi = findViewById(R.id.btnValidasi)
+        tvTimer = findViewById(R.id.tvTimer)
+        startTimer()
 
         btnValidasi.setOnClickListener {
             val userPoints = canvasView.getUserDrawnPoints()
@@ -59,7 +68,14 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
                 validateDrawing() // Panggil validasi hanya jika ada gambar
                 Log.d("CanvasView", "Total titik yang digambar: ${userPoints.size}")
             } else {
-                Toast.makeText(this, "Silakan gambar dulu!", Toast.LENGTH_SHORT).show()
+                val mediaPlayer = MediaPlayer.create(this, R.raw.sound_salah) // Suara peringatan
+                mediaPlayer.start() // Mainkan suara
+
+                // Tampilkan dialog dengan gambar peringatan
+                tampilkanDialogJawaban(R.drawable.asset_notif_peringatan)
+
+                // Lepaskan media player setelah selesai diputar
+                mediaPlayer.setOnCompletionListener { mp -> mp.release() }
             }
         }
 
@@ -102,6 +118,32 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun startTimer() {
+        runnable = object : Runnable {
+            override fun run() {
+                if (remainingTime > 0) {
+                    remainingTime -= 1000
+                    val minutes = (remainingTime / 1000) / 60
+                    val seconds = (remainingTime / 1000) % 60
+                    tvTimer.text = String.format("%02d:%02d", minutes, seconds)
+                    handler.postDelayed(this, 1000) // Update setiap detik
+                } else {
+                    handler.removeCallbacks(runnable)
+                    onTimeUp()
+                }
+            }
+        }
+        handler.post(runnable)
+    }
+    private fun onTimeUp() {
+        Toast.makeText(this, "Waktu habis!", Toast.LENGTH_LONG).show()
+        finish() // Tutup aktivitas kuis
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        handler.removeCallbacks(runnable) // Hentikan timer untuk menghindari memory leak
     }
 
     private fun tampilkanPolaAksara() {
@@ -264,18 +306,56 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
         // Validasi menggunakan Point in Polygon
         val isCorrect = isPointInPolygon(userPointsF, referencePointsF)
 
-        if (isCorrect) {
-            Log.d("KuisMenulisSwara", "Gambar benar!")
-            Toast.makeText(this, "Gambar benar!", Toast.LENGTH_SHORT).show()
-        } else {
-            Log.d("KuisMenulisSwara", "Gambar belum sesuai.")
-            Toast.makeText(this, "Gambar belum sesuai, coba lagi!", Toast.LENGTH_SHORT).show()
-        }
+        // **Gunakan cekJawaban() untuk menampilkan dialog dan suara**
+        cekJawaban(isCorrect)
     }
 
     // Fungsi konversi List<Titik> ke List<PointF>
     fun convertToPointFList(titikList: List<Titik>): List<PointF> {
         return titikList.map { PointF(it.x.toFloat(), it.y.toFloat()) }
+    }
+
+    private fun cekJawaban(isCorrect: Boolean) {
+        var isAnswered = true
+
+        val mediaPlayer: MediaPlayer
+        val imageRes: Int
+
+        if (isCorrect) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound_benar) // Suara benar
+            imageRes = R.drawable.asset_notif_benar_nulis // Gambar jawaban benar
+        } else {
+            mediaPlayer = MediaPlayer.create(this, R.raw.sound_salah) // Suara salah
+            imageRes = R.drawable.asset_notif_salah_nulis // Gambar jawaban salah
+        }
+        mediaPlayer.start() // Mainkan suara
+
+        // Tampilkan dialog dengan gambar
+        tampilkanDialogJawaban(imageRes)
+
+        // Lepaskan media player setelah selesai diputar
+        mediaPlayer.setOnCompletionListener { mp -> mp.release() }
+    }
+
+    private fun tampilkanDialogJawaban(imageRes: Int) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_feedback_kuis, null)
+        val dialogBuilder = android.app.AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setCancelable(false)
+
+        val alertDialog = dialogBuilder.create()
+        alertDialog.show()
+
+        // Atur background dialog
+        alertDialog.window?.setBackgroundDrawableResource(R.drawable.button_rounded)
+
+        val imgJawaban = dialogView.findViewById<ImageView>(R.id.imgJawaban)
+        imgJawaban.setImageResource(imageRes)
+
+        // Atur dialog agar otomatis hilang setelah 2 detik dan lanjut ke soal berikutnya
+        Handler(Looper.getMainLooper()).postDelayed({
+            alertDialog.dismiss()
+        }, 1500) // 1500ms = 1.5 detik
     }
 
 
