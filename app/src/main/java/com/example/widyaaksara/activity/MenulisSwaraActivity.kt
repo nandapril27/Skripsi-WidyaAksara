@@ -12,6 +12,7 @@ import com.example.widyaaksara.api.ApiClient
 import com.example.widyaaksara.dialog.PetunjukDialog
 import com.example.widyaaksara.model.Aksara
 import com.example.widyaaksara.model.AksaraResponse
+import com.example.widyaaksara.view.CanvasView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +24,7 @@ class MenulisSwaraActivity : AppCompatActivity() {
     private lateinit var imagePola: ImageView
     private lateinit var tvNamaAksara: TextView
     private lateinit var ivPetunjuk: ImageView
+    private lateinit var canvasView: CanvasView
 
     private var aksaraList: List<Aksara> = listOf()
     private var currentIndex = 0
@@ -34,9 +36,10 @@ class MenulisSwaraActivity : AppCompatActivity() {
         btnNext = findViewById(R.id.btnNext)
         btnBack = findViewById(R.id.btnBack)
         imageAksara = findViewById(R.id.imageAksara)
-        imagePola = findViewById(R.id.card_menulis)
+        imagePola = findViewById(R.id.imagePola)
         tvNamaAksara = findViewById(R.id.tvNamaAksara)
         ivPetunjuk = findViewById(R.id.ivPetunjuk)
+        canvasView = findViewById(R.id.canvasView)
 
         // Event klik untuk tombol Petunjuk penulisan
         ivPetunjuk .setOnClickListener {
@@ -50,6 +53,7 @@ class MenulisSwaraActivity : AppCompatActivity() {
 
         btnNext.setOnClickListener {
             if (aksaraList.isNotEmpty()) {
+                canvasView.clearCanvas()  // Bersihkan sebelum menggambar aksara berikutnya
                 currentIndex = (currentIndex + 1) % aksaraList.size
                 updateUI()
             }
@@ -57,6 +61,7 @@ class MenulisSwaraActivity : AppCompatActivity() {
 
         btnBack.setOnClickListener {
             if (aksaraList.isNotEmpty()) {
+                canvasView.clearCanvas()  // Bersihkan sebelum kembali ke aksara sebelumnya
                 currentIndex = if (currentIndex - 1 < 0) aksaraList.size - 1 else currentIndex - 1
                 updateUI()
             }

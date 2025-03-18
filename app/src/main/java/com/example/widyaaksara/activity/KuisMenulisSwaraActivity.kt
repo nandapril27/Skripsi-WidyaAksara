@@ -399,12 +399,12 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
             // Cek apakah titik berada di dalam poligon (menggunakan aturan ray-casting)
             val insidePolygon = intersections % 2 == 1
 
-            // Tambahkan toleransi dengan membandingkan jarak titik user dengan titik referensi
-            val closeEnough = referencePoints.any { refPoint ->
-                distance(userPoint, refPoint) <= tolerance
-            }
+//            // Tambahkan toleransi dengan membandingkan jarak titik user dengan titik referensi
+//            val closeEnough = referencePoints.any { refPoint ->
+//                distance(userPoint, refPoint) <= tolerance
+//            }
 
-            if (insidePolygon || closeEnough) {
+            if (insidePolygon) {
                 correctPoints++
             }
         }

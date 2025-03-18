@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.BlurMaskFilter
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
@@ -15,9 +16,14 @@ import com.example.widyaaksara.model.Titik
 class CanvasView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private val paint = Paint().apply {
         color = Color.BLACK
-        strokeWidth = 10f
+        strokeWidth = 50f
         style = Paint.Style.STROKE
+        isAntiAlias = true  // Anti-aliasing untuk membuat garis halus
+        strokeJoin = Paint.Join.ROUND  // Membuat sudut garis lebih smooth
+        strokeCap = Paint.Cap.ROUND  // Membuat ujung garis membulat agar tidak patah
+        //        maskFilter = BlurMaskFilter(10f, BlurMaskFilter.Blur.NORMAL)
     }
+
     private val referencePaint = Paint().apply {
         color = Color.RED
         strokeWidth = 8f
@@ -82,14 +88,21 @@ class CanvasView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             }
             MotionEvent.ACTION_MOVE -> {
                 Log.d("CanvasView", "Menggambar di: ${event.x}, ${event.y}")
-                path.lineTo(event.x, event.y)
+
+                // Ambil titik terakhir sebagai referensi
+                val lastX = userPoints.lastOrNull()?.x?.toFloat() ?: event.x
+                val lastY = userPoints.lastOrNull()?.y?.toFloat() ?: event.y
+
+                // Gunakan quadTo() untuk interpolasi agar lebih smooth
+                path.quadTo(lastX, lastY, (event.x + lastX) / 2, (event.y + lastY) / 2)
+
+                // Tambahkan titik baru ke daftar
                 userPoints.add(Titik(event.x.toInt(), event.y.toInt()))
             }
             MotionEvent.ACTION_UP -> {
                 Log.d("CanvasView", "Selesai menggambar")
                 paths.add(Path(path)) // Simpan path agar tidak hilang
                 path = Path() // Buat Path baru agar path yang lama tetap tersimpan
-//                path.reset()  // Reset path sementara
 
             }
         }

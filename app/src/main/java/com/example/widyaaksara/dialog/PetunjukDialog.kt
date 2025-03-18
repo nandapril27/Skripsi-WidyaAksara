@@ -31,7 +31,7 @@ class PetunjukDialog(context: Context, private val namaAksara: String, private v
         // Set teks petunjuk
         tvInstructions.text = "1. Perhatikan baik-baik huruf yang ditampilkan.\n\n" +
                 "2. Perhatikan urutan nomor coretan dan tanda panah di dalam huruf.\n\n" +
-                "3. Mulailah mencoret sesuai dengan urutan tahapan coretan."
+                "3. Tarik garis mengikuti arah panah yang ditentukan sesuai tahapan coretan."
 
         // Load gambar pola menggunakan Glide
         Glide.with(context)

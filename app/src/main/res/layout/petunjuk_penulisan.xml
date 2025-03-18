@@ -43,7 +43,7 @@
                 android:id="@+id/tvInstructions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="\n1. Perhatikan baik-baik huruf yang ditampilkan.\n2. Perhatikan urutan nomor coretan dan tanda panah di dalam huruf.\n3. Mulailah mencoret sesuai dengan urutan tahapan coretan."
+                android:text="\n1. Perhatikan baik-baik huruf yang ditampilkan.\n2. Perhatikan urutan nomor coretan dan tanda panah di dalam huruf.\n3. Tarik garis mengikuti arah panah yang ditentukan sesuai tahapan coretan."
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@id/tvTitle"
