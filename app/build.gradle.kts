@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-//    implementation ("com.github.barteksc:android-pdf-viewer:2.7.0")
+//    implementation ("com.github.barteksc:android-pdf-viewer:2.7.0") //UNTUK BACA PDF
     implementation ("com.google.code.gson:gson:2.8.9")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation ("androidx.core:core-ktx:1.12.0")
@@ -50,7 +50,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation ("com.github.bumptech.glide:glide:4.15.1")
-    implementation("androidx.lifecycle:lifecycle-process:2.8.7")
+//    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2") //UNTUK BACKSOUND
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
