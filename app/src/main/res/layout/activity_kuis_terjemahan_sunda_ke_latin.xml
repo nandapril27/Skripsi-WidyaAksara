@@ -52,11 +52,11 @@
         android:id="@+id/card_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/garis"
+        android:src="@drawable/asset_sunda_ke_latin"
+        android:layout_below="@+id/garis"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="4dp"
-        android:src="@drawable/asset_sunda_ke_latin" />
+        android:layout_marginEnd="30dp"/>
 
     <!-- CardView untuk menampilkan soal -->
     <androidx.cardview.widget.CardView
@@ -66,7 +66,7 @@
         android:layout_below="@id/card_judul"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:layout_marginBottom="12dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="6dp"

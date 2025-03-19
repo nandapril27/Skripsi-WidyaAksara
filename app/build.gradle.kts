@@ -50,6 +50,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation ("com.github.bumptech.glide:glide:4.15.1")
+    implementation("androidx.lifecycle:lifecycle-process:2.8.7")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

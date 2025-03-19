@@ -50,20 +50,21 @@
     <!-- Card Judul Sunda ke Latin -->
     <ImageView
         android:id="@+id/card_judul"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/asset_latin_ke_sunda"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/asset_sunda_ke_latin"
         app:layout_constraintTop_toBottomOf="@id/garis"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp" />
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"/>
 
     <!-- CardView untuk hasil kuis -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardHasilKuis"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         app:cardCornerRadius="12dp"

@@ -19,6 +19,9 @@
         android:theme="@style/Theme.WidyaAksara"
         tools:targetApi="31">
 
+        <!--Backsound Aplikasi-->
+        <service android:name=".service.BacksoundService" />
+
         <!-- Splash Screen (MainActivity) -->
         <activity
             android:name=".activity.MainActivity"

@@ -14,9 +14,10 @@ import android.view.View
 import com.example.widyaaksara.model.Titik
 
 class CanvasView(context: Context, attrs: AttributeSet) : View(context, attrs) {
+    //Coretan Menulis
     private val paint = Paint().apply {
         color = Color.BLACK
-        strokeWidth = 50f
+        strokeWidth = 46f
         style = Paint.Style.STROKE
         isAntiAlias = true  // Anti-aliasing untuk membuat garis halus
         strokeJoin = Paint.Join.ROUND  // Membuat sudut garis lebih smooth

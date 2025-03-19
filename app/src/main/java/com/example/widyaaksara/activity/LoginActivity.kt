@@ -11,6 +11,7 @@ import com.example.widyaaksara.R
 import com.example.widyaaksara.api.ApiClient
 import com.example.widyaaksara.model.LoginRequest
 import com.example.widyaaksara.model.LoginResponse
+import com.example.widyaaksara.service.BacksoundService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        startService(Intent(this, BacksoundService::class.java)) // Mulai backsound
 
         // Menghubungkan komponen layout dengan kode
         val etNIS = findViewById<EditText>(R.id.etNIS)

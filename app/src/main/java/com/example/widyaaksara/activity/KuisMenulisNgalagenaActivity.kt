@@ -352,7 +352,7 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
         val imgJawaban = dialogView.findViewById<ImageView>(R.id.imgJawaban)
         imgJawaban.setImageResource(imageRes)
 
-        // Atur dialog agar otomatis hilang setelah 2 detik dan lanjut ke soal berikutnya
+        // Atur dialog agar otomatis hilang setelah 2 detik
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
         }, 1500) // 1500ms = 1.5 detik

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.widyaaksara.R
 import com.example.widyaaksara.model.MenuAdapter
+import com.example.widyaaksara.service.BacksoundService
 
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +63,11 @@ class HomeActivity : AppCompatActivity() {
                 val intent = Intent(this, InformasiPembuatActivity::class.java)
                 startActivity(intent)
             }
-
         }
     }
+    override fun onResume() {
+        super.onResume()
+        startService(Intent(this, BacksoundService::class.java))
+    }
+
 }
