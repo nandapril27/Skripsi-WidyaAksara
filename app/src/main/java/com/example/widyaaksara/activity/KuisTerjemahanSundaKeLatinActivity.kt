@@ -42,7 +42,7 @@ class KuisTerjemahanSundaKeLatinActivity : AppCompatActivity() {
     private lateinit var btnNext: ImageView
     private lateinit var timerTextView: TextView
     private lateinit var countDownTimer: CountDownTimer
-    private val totalTimeInMillis: Long = 30 * 60 * 1000  // 30 menit dalam milidetik
+    private val totalTimeInMillis: Long = 40 * 60 * 1000  // 40 menit dalam milidetik
 
 
     private var kuisList: List<KuisModel> = listOf()

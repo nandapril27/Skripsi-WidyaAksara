@@ -44,7 +44,7 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
     private var aksaraNgalagenaList: List<AksaraModel> = listOf()
     private var currentIndex = 0
     private var currentAksara: AksaraModel? = null
-    private var totalTime = 600000L // 10 menit dalam milidetik
+    private var totalTime = 720000L // 12 menit dalam milidetik // 12 * 60 * 1000
     private var remainingTime = totalTime
     private val handler = Handler(Looper.getMainLooper())
 

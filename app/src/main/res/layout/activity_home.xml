@@ -31,13 +31,13 @@
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Ikon Info Pembuat -->
+    <!-- Ikon Profil -->
     <ImageView
-        android:id="@+id/ivInfoPembuat"
+        android:id="@+id/ivProfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/asset_icon_pembuat"
-        android:contentDescription="Info Pembuat"
+        android:contentDescription="Profil"
         app:layout_constraintTop_toTopOf="@id/tvJudul"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="50dp" />

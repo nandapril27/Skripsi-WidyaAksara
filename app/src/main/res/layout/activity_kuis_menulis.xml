@@ -52,7 +52,7 @@
 
     <!-- Aksara Ngalagena 1 -->
     <Button
-        android:id="@+id/btnMenulisNgalagena1"
+        android:id="@+id/btnMenulisNgalagena"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/button_rounded"
@@ -61,37 +61,37 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
-        android:text="AKSARA NGALAGENA (1)"
+        android:text="AKSARA NGALAGENA"
         android:textColor="#FFFFFF"
         android:textSize="20sp" />
 
-    <!-- Aksara Ngalagena 2 -->
-    <Button
-        android:id="@+id/btnMenulisNgalagena2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/button_rounded"
-        android:padding="8dp"
-        android:layout_below="@id/btnMenulisNgalagena1"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="AKSARA NGALAGENA  (2)"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+<!--    &lt;!&ndash; Aksara Ngalagena 2 &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/btnMenulisNgalagena2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:background="@drawable/button_rounded"-->
+<!--        android:padding="8dp"-->
+<!--        android:layout_below="@id/btnMenulisNgalagena1"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:text="AKSARA NGALAGENA  (2)"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="20sp" />-->
 
-    <!-- Aksara Ngalagena 3 -->
-    <Button
-        android:id="@+id/btnMenulisNgalagena3"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/button_rounded"
-        android:padding="8dp"
-        android:layout_below="@id/btnMenulisNgalagena2"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="AKSARA NGALAGENA  (3)"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+<!--    &lt;!&ndash; Aksara Ngalagena 3 &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/btnMenulisNgalagena3"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:background="@drawable/button_rounded"-->
+<!--        android:padding="8dp"-->
+<!--        android:layout_below="@id/btnMenulisNgalagena2"-->
+<!--        android:layout_marginStart="30dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_marginEnd="30dp"-->
+<!--        android:text="AKSARA NGALAGENA  (3)"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textSize="20sp" />-->
 </RelativeLayout>

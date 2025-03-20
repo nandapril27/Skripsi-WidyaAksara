@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
         // Nama menu sesuai urutan dalam grid
-        val menuNames = listOf("MATERI", "MENULIS", "KUIS", "NILAI", "INFORMASI", "PROFIL")
+        val menuNames = listOf("MATERI", "MENULIS", "KUIS", "NILAI", "INFORMASI", "TENTANG")
 
         // Set GridLayoutManager dengan 2 kolom
         recyclerView.layoutManager = GridLayoutManager(this, 2)
@@ -48,8 +48,8 @@ class HomeActivity : AppCompatActivity() {
                     val intent = Intent(this, InformasiActivity::class.java)
                     startActivity(intent)
                 }
-                "PROFIL" -> {
-                    val intent = Intent(this, ProfilActivity::class.java)
+                "TENTANG" -> {
+                    val intent = Intent(this, InformasiPembuatActivity::class.java)
                     startActivity(intent)
                 }
                 else -> {
@@ -57,10 +57,10 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
 
-            // Menangani klik pada ImageView Info Pembuat
-            val ivInfoPembuat = findViewById<ImageView>(R.id.ivInfoPembuat)
-            ivInfoPembuat.setOnClickListener {
-                val intent = Intent(this, InformasiPembuatActivity::class.java)
+            // Menangani klik pada ImageView Profil
+            val ivProfil = findViewById<ImageView>(R.id.ivProfil)
+            ivProfil.setOnClickListener {
+                val intent = Intent(this, ProfilActivity::class.java)
                 startActivity(intent)
             }
         }

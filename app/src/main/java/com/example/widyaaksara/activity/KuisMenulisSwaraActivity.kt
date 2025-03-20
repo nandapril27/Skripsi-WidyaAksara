@@ -44,7 +44,7 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
     private var aksaraSwaraList: List<AksaraModel> = listOf()
     private var currentIndex = 0
     private var currentAksara: AksaraModel? = null
-    private var totalTime = 600000L // 10 menit dalam milidetik
+    private var totalTime = 240000L // 4 menit dalam milidetik // 4 * 60 * 1000
     private var remainingTime = totalTime
     private val handler = Handler(Looper.getMainLooper())
 

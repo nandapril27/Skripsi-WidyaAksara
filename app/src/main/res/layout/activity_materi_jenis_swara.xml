@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="&lt;&lt; Geser disini &gt;&gt;"
+        android:text="&lt;&lt; Geser didieu &gt;&gt;"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="italic"

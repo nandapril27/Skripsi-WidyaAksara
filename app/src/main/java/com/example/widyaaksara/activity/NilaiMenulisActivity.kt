@@ -15,9 +15,9 @@ class NilaiMenulisActivity : AppCompatActivity() {
 
         // Ambil referensi Button dari layout
         val nilaiMenulisSwara = findViewById<Button>(R.id.btnMenulisSwara)
-        val nilaiMenulisNgalagena1 = findViewById<Button>(R.id.btnMenulisNgalagena1)
-        val nilaiMenulisNgalagena2 = findViewById<Button>(R.id.btnMenulisNgalagena2)
-        val nilaiMenulisNgalagena3 = findViewById<Button>(R.id.btnMenulisNgalagena3)
+        val nilaiMenulisNgalagena = findViewById<Button>(R.id.btnMenulisNgalagena)
+//        val nilaiMenulisNgalagena2 = findViewById<Button>(R.id.btnMenulisNgalagena2)
+//        val nilaiMenulisNgalagena3 = findViewById<Button>(R.id.btnMenulisNgalagena3)
 
         // Klik "KUIS MENULIS AKSARA SWARA"
         nilaiMenulisSwara.setOnClickListener {
@@ -26,17 +26,17 @@ class NilaiMenulisActivity : AppCompatActivity() {
         }
 
         // Klik "KUIS MENULIS AKSARA NGALAGENA"
-        nilaiMenulisNgalagena1.setOnClickListener {
+        nilaiMenulisNgalagena.setOnClickListener {
             val intent = Intent(this, NilaiMenulisNgalagenaActivity::class.java)
             startActivity(intent)
         }
-        nilaiMenulisNgalagena2.setOnClickListener {
-            val intent = Intent(this, NilaiMenulisNgalagenaActivity::class.java)
-            startActivity(intent)
-        }
-        nilaiMenulisNgalagena3.setOnClickListener {
-            val intent = Intent(this, NilaiMenulisNgalagenaActivity::class.java)
-            startActivity(intent)
-        }
+//        nilaiMenulisNgalagena2.setOnClickListener {
+//            val intent = Intent(this, NilaiMenulisNgalagenaActivity::class.java)
+//            startActivity(intent)
+//        }
+//        nilaiMenulisNgalagena3.setOnClickListener {
+//            val intent = Intent(this, NilaiMenulisNgalagenaActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 }
