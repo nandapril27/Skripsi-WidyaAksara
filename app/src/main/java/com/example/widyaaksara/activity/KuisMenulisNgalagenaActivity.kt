@@ -1,5 +1,7 @@
 package com.example.widyaaksara.activity
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -19,12 +21,17 @@ import com.example.widyaaksara.api.ApiClient
 import com.example.widyaaksara.model.Aksara
 import com.example.widyaaksara.model.AksaraModel
 import com.example.widyaaksara.model.AksaraResponse
+import com.example.widyaaksara.model.NilaiRequest
 import com.example.widyaaksara.model.Titik
 import com.example.widyaaksara.utils.JsonHelper
 import com.example.widyaaksara.view.CanvasView
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.math.abs
@@ -40,12 +47,17 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
     private lateinit var tvTimer: TextView
     private lateinit var runnable: Runnable
 
+    private var skorBenar = 0
+    private var skorSalah = 0
     private var aksaraList: List<Aksara> = listOf()
     private var aksaraNgalagenaList: List<AksaraModel> = listOf()
     private var currentIndex = 0
     private var currentAksara: AksaraModel? = null
     private var totalTime = 720000L // 12 menit dalam milidetik // 12 * 60 * 1000
     private var remainingTime = totalTime
+    private var nomorSoalSaatIni = 0
+    private val totalSoal = 23 // Ubah sesuai jumlah total soal
+
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,11 +123,7 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
         }
 
         btnBack.setOnClickListener {
-            if (aksaraList.isNotEmpty()) {
                 canvasView.clearCanvas()  // Bersihkan sebelum kembali ke aksara sebelumnya
-                currentIndex = if (currentIndex - 1 < 0) aksaraList.size - 1 else currentIndex - 1
-                updateUI()
-            }
         }
 
     }
@@ -316,26 +324,103 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
     }
 
     private fun cekJawaban(isCorrect: Boolean) {
-        var isAnswered = true
-
         val mediaPlayer: MediaPlayer
         val imageRes: Int
 
         if (isCorrect) {
+            skorBenar++
             mediaPlayer = MediaPlayer.create(this, R.raw.sound_benar) // Suara benar
             imageRes = R.drawable.asset_notif_benar_nulis // Gambar jawaban benar
         } else {
+            skorSalah++
             mediaPlayer = MediaPlayer.create(this, R.raw.sound_salah) // Suara salah
             imageRes = R.drawable.asset_notif_salah_nulis // Gambar jawaban salah
         }
+
         mediaPlayer.start() // Mainkan suara
 
-        // Tampilkan dialog dengan gambar
-        tampilkanDialogJawaban(imageRes)
+        // Hitung total skor dengan batas maksimal 100
+        var skorTotal = skorBenar * 5
+        if (skorTotal > 100) {
+            skorTotal = 100
+        }
 
+        // Tampilkan dialog dengan gambar
+        val dialog = tampilkanDialogJawaban(imageRes)
+
+        // Saat dialog ditutup, lanjutkan ke soal berikutnya atau ke SkorActivity jika ini soal terakhir
+            if (isSoalTerakhir()) {
+                submitNilaiMenulisToAPI(skorTotal, true) // Kirim nilai dan tandai sebagai soal terakhir
+            } else {
+                tampilkanSoalBerikutnya() // Lanjutkan ke soal berikutnya
+            }
+        
         // Lepaskan media player setelah selesai diputar
         mediaPlayer.setOnCompletionListener { mp -> mp.release() }
     }
+
+    // Fungsi untuk mengecek apakah ini soal terakhir
+    private fun isSoalTerakhir(): Boolean {
+        return nomorSoalSaatIni >= totalSoal - 1
+    }
+
+    // Fungsi untuk menampilkan soal berikutnya
+    private fun tampilkanSoalBerikutnya() {
+        nomorSoalSaatIni++
+        updateUI()
+    }
+
+    // Simpan Nilai Ke Database untuk Kuis Menulis Aksara Ngalagena
+    private fun submitNilaiMenulisToAPI(nilai: Int, isSoalTerakhir: Boolean) {
+        val sharedPref = getSharedPreferences("UserData", MODE_PRIVATE)
+        val nis = sharedPref.getString("NIS", null) // Ambil NIS dari SharedPreferences
+
+        if (nis.isNullOrEmpty()) {
+            Log.e("SESSION_ERROR", "NIS tidak ditemukan dalam sesi")
+            return
+        }
+
+        val tanggal = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()) // Format tanggal hari ini
+        val nilaiRequest = NilaiRequest(nis, nilai, tanggal) // Buat request data untuk API
+
+        ApiClient.instance.simpanNilaiMenulisNgalagena(nilaiRequest).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    val responseBody = response.body()?.string() ?: "Response kosong"
+                    Log.d("API_RESPONSE", "Raw Response: $responseBody")
+
+                    if (response.isSuccessful) {
+                        Log.d("API_SUCCESS", "Nilai berhasil disimpan!")
+                        Toast.makeText(this@KuisMenulisNgalagenaActivity, "Nilai berhasil disimpan!", Toast.LENGTH_SHORT).show()
+
+                        if (isSoalTerakhir) {
+                            // Jika ini soal terakhir, baru pindah ke SkorActivity
+                            val intent = Intent(this@KuisMenulisNgalagenaActivity, SkorActivity::class.java)
+                            intent.putExtra("JUMLAH_BENAR", skorBenar)
+                            intent.putExtra("JUMLAH_SALAH", skorSalah)
+                            intent.putExtra("SKOR_TOTAL", nilai)
+                            startActivity(intent)
+                            finish()
+                        }
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        Log.e("API_ERROR", "Gagal menyimpan nilai: $errorBody")
+
+                        if (errorBody.isNullOrEmpty()) {
+                            Log.e("API_ERROR", "Kemungkinan response dari API tidak valid atau bukan JSON")
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("API_EXCEPTION", "Error parsing response: ${e.message}")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.e("API_FAILURE", "Error: ${t.message}")
+            }
+        })
+    }
+
 
     private fun tampilkanDialogJawaban(imageRes: Int) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_feedback_kuis, null)
