@@ -48,4 +48,13 @@ interface ApiService {
     @GET("aksara-ngalagena")
     fun getAksaraNgalagena(): Call<AksaraResponse>
 
+    //Nilai Menulis Aksara Swara
+
+    //Nilai Menulis Aksara Ngalagena
+    @POST("nilai-menulis-ngalagena")
+    fun simpanNilaiMenulisNgalagena(@Body nilaiRequest: NilaiRequest): Call<ResponseBody>
+
+    @GET("nilai-menulis-ngalagena/{NIS}")
+    fun getNilaiKuisMenulisNgalagena(@Path("NIS") NIS: String): Call<NilaiResponse>
+
 }

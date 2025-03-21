@@ -230,12 +230,6 @@ class KuisTerjemahanSundaKeLatinActivity : AppCompatActivity() {
         countDownTimer.cancel() // Hentikan timer
 
         val skorTotal = skorBenar * 5
-//        val intent = Intent(this, SkorActivity::class.java)
-//        intent.putExtra("JUMLAH_BENAR", skorBenar)
-//        intent.putExtra("JUMLAH_SALAH", skorSalah)
-//        intent.putExtra("SKOR_TOTAL", skorTotal)
-//        startActivity(intent)
-//        finish()
 
         submitNilaiToAPI(skorTotal) // Simpan skor ke database
     }
