@@ -38,9 +38,6 @@
         <!-- Home -->
         <activity android:name=".activity.HomeActivity" android:exported="true" />
 
-        <!-- Informasi Pembuat-->
-        <activity android:name=".activity.InformasiPembuatActivity" android:exported="true" />
-
         <!-- Materi -->
         <activity android:name=".activity.MateriActivity" android:exported="true" />
         <!-- Materi Pengenalan -->
@@ -83,6 +80,12 @@
 
         <!-- Informasi -->
         <activity android:name=".activity.InformasiActivity" android:exported="true" />
+
+        <!-- Informasi Bantuan-->
+        <activity android:name=".activity.InformasiBantuanActivity" android:exported="true" />
+
+        <!-- Informasi Pembuat-->
+        <activity android:name=".activity.InformasiPembuatActivity" android:exported="true" />
 
         <!-- Profil -->
         <activity android:name=".activity.ProfilActivity" android:exported="true" />

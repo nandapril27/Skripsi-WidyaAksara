@@ -20,7 +20,7 @@
         android:layout_below="@id/logo"
         android:layout_marginTop="24dp"
         android:layout_marginStart="30dp"
-        android:text="Informasi Pengembang"
+        android:text="Informasi Aplikasi"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -49,24 +49,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Informasi -->
-    <ImageView
-        android:id="@+id/logoImage"
+    <!-- RecyclerView untuk menampilkan daftar bantuan -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvSwipe"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/button_rounded"
-        android:src="@drawable/asset_card_informasi" />
+        android:paddingHorizontal="20dp"
+        android:scrollbars="vertical" />
 
-    <!-- Ilustrasi -->
-    <ImageView
-        android:id="@+id/illustrationImage"
-        android:layout_width="404dp"
-        android:layout_height="266dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-72dp"
-        android:src="@drawable/asset_ilustrasi" />
 </RelativeLayout>

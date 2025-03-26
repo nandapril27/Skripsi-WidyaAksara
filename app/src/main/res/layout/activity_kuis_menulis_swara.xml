@@ -45,6 +45,18 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="54dp"/>
 
+    <!-- Tombol Penghapus -->
+    <ImageView
+        android:id="@+id/ivClear"
+        android:layout_width="41dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="140dp"
+        android:contentDescription="Clear"
+        android:src="@drawable/asset_icon_clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/logo" />
+
     <!-- Tombol Validasi -->
     <Button
         android:id="@+id/btnValidasi"
@@ -104,11 +116,12 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/asset_back_menulis"
+                android:src="@drawable/button_rounded"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginStart="8dp" />
+
 
             <!-- Gambar Aksara -->
             <ImageView

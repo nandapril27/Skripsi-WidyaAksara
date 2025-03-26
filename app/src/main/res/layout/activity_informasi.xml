@@ -32,21 +32,35 @@
         android:layout_below="@id/tvMateri"
         android:layout_marginStart="30dp"
         android:layout_marginTop="6dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/asset_garis" />
+
+    <!-- Swipe -->
+    <TextView
+        android:id="@+id/tvSwipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="&lt;&lt; Geser didieu &gt;&gt;"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/garis"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Informasi -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
         android:backgroundTint="@color/blue"
-        android:layout_below="@id/garis">
+        android:layout_below="@id/tvSwipe">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -69,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="278dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-17dp"
+        android:layout_marginBottom="-15dp"
         android:src="@drawable/asset_ilustrasi_batik" />
 
 </RelativeLayout>

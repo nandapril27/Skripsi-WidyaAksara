@@ -1,7 +1,6 @@
 package com.example.widyaaksara.activity
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -11,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import android.graphics.PointF
 import android.media.MediaPlayer
-import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +36,7 @@ import kotlin.math.abs
 
 class KuisMenulisNgalagenaActivity : AppCompatActivity() {
     private lateinit var btnNext: ImageButton
-    private lateinit var btnBack: ImageButton
+    private lateinit var ivClear: ImageView
     private lateinit var imagePola: ImageView
     private lateinit var canvasView: CanvasView
     private lateinit var tvNamaAksara: TextView
@@ -65,7 +63,7 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kuis_menulis_ngalagena)
 
         btnNext = findViewById(R.id.btnNext)
-        btnBack = findViewById(R.id.btnBack)
+        ivClear = findViewById(R.id.ivClear)
         imagePola = findViewById(R.id.imagePola)
         canvasView = findViewById(R.id.canvasView)
         tvNamaAksara = findViewById(R.id.tvNamaAksara)
@@ -122,8 +120,8 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
             }
         }
 
-        btnBack.setOnClickListener {
-                canvasView.clearCanvas()  // Bersihkan sebelum kembali ke aksara sebelumnya
+        ivClear.setOnClickListener {
+                canvasView.clearCanvas()  // Bersihkan Coretan Aksara
         }
 
     }
@@ -354,7 +352,7 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
             } else {
                 tampilkanSoalBerikutnya() // Lanjutkan ke soal berikutnya
             }
-        
+
         // Lepaskan media player setelah selesai diputar
         mediaPlayer.setOnCompletionListener { mp -> mp.release() }
     }

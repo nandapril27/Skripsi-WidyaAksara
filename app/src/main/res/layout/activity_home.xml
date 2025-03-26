@@ -31,16 +31,16 @@
         app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Ikon Profil -->
-    <ImageView
-        android:id="@+id/ivProfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/asset_icon_pembuat"
-        android:contentDescription="Profil"
-        app:layout_constraintTop_toTopOf="@id/tvJudul"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="50dp" />
+<!--    &lt;!&ndash; Ikon Profil &ndash;&gt;-->
+<!--    <ImageView-->
+<!--        android:id="@+id/ivProfil"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/asset_icon_pembuat"-->
+<!--        android:contentDescription="Profil"-->
+<!--        app:layout_constraintTop_toTopOf="@id/tvJudul"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginEnd="50dp" />-->
 
     <ImageView
         android:id="@+id/garis"

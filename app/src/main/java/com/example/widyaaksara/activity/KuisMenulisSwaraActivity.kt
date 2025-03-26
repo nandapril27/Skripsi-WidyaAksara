@@ -9,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import android.graphics.PointF
 import android.media.MediaPlayer
-import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
@@ -31,7 +30,7 @@ import kotlin.math.abs
 
 class KuisMenulisSwaraActivity : AppCompatActivity() {
     private lateinit var btnNext: ImageButton
-    private lateinit var btnBack: ImageButton
+    private lateinit var ivClear: ImageView
     private lateinit var imagePola: ImageView
     private lateinit var canvasView: CanvasView
     private lateinit var tvNamaAksara: TextView
@@ -53,7 +52,7 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kuis_menulis_swara)
 
         btnNext = findViewById(R.id.btnNext)
-        btnBack = findViewById(R.id.btnBack)
+        ivClear = findViewById(R.id.ivClear)
         imagePola = findViewById(R.id.imagePola)
         canvasView = findViewById(R.id.canvasView)
         tvNamaAksara = findViewById(R.id.tvNamaAksara)
@@ -110,13 +109,9 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
             }
         }
 
-        btnBack.setOnClickListener {
-            if (aksaraList.isNotEmpty()) {
-                canvasView.clearCanvas()  // Bersihkan sebelum kembali ke aksara sebelumnya
-                currentIndex = if (currentIndex - 1 < 0) aksaraList.size - 1 else currentIndex - 1
-                updateUI()
+        ivClear.setOnClickListener {
+            canvasView.clearCanvas()  // Bersihkan Coretan Aksara
             }
-        }
 
     }
 
