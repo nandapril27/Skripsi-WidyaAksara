@@ -25,7 +25,8 @@ class SkorActivity : AppCompatActivity() {
 
         val jumlahBenar = intent.getIntExtra("JUMLAH_BENAR", 0)
         val jumlahSalah = intent.getIntExtra("JUMLAH_SALAH", 0)
-        val skorTotal = jumlahBenar * 5  // Kalkulasi skor
+        val skorTotal = intent.getIntExtra("SKOR_TOTAL", 0)
+        //val skorTotal = jumlahBenar * 5  // Kalkulasi skor
 
         val tvBenar = findViewById<TextView>(R.id.tvBenar)
         val tvSalah = findViewById<TextView>(R.id.tvSalah)

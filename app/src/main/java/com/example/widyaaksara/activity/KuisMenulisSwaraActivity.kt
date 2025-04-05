@@ -1,5 +1,6 @@
 package com.example.widyaaksara.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -18,15 +19,21 @@ import com.example.widyaaksara.api.ApiClient
 import com.example.widyaaksara.model.Aksara
 import com.example.widyaaksara.model.AksaraModel
 import com.example.widyaaksara.model.AksaraResponse
+import com.example.widyaaksara.model.NilaiRequest
 import com.example.widyaaksara.model.Titik
 import com.example.widyaaksara.utils.JsonHelper
 import com.example.widyaaksara.view.CanvasView
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.math.pow
 import kotlin.math.sqrt
 import kotlin.math.abs
+import kotlin.math.roundToInt
 
 class KuisMenulisSwaraActivity : AppCompatActivity() {
     private lateinit var btnNext: ImageButton
@@ -39,12 +46,17 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
     private lateinit var tvTimer: TextView
     private lateinit var runnable: Runnable
 
+    private var skorBenar = 0
+    private var skorSalah = 0
     private var aksaraList: List<Aksara> = listOf()
     private var aksaraSwaraList: List<AksaraModel> = listOf()
     private var currentIndex = 0
     private var currentAksara: AksaraModel? = null
     private var totalTime = 240000L // 4 menit dalam milidetik // 4 * 60 * 1000
     private var remainingTime = totalTime
+    private var nomorSoalSaatIni = 0
+    private val totalSoal = 7 // Ubah sesuai jumlah total soal
+
     private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,7 +123,7 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
 
         ivClear.setOnClickListener {
             canvasView.clearCanvas()  // Bersihkan Coretan Aksara
-            }
+        }
 
     }
 
@@ -151,7 +163,7 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
     }
 
     private fun fetchAksaraData() {
-        ApiClient.instance.getAksaraSwara().enqueue(object : Callback<AksaraResponse> {
+        ApiClient.instance.getMenulisAksaraSwara().enqueue(object : Callback<AksaraResponse> {
             override fun onResponse(
                 call: Call<AksaraResponse>,
                 response: Response<AksaraResponse>
@@ -301,7 +313,7 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
         // Validasi menggunakan Point in Polygon
         val isCorrect = isPointInPolygon(userPointsF, referencePointsF)
 
-        // **Gunakan cekJawaban() untuk menampilkan dialog dan suara**
+        // Gunakan cekJawaban() untuk menampilkan dialog dan suara
         cekJawaban(isCorrect)
     }
 
@@ -311,26 +323,101 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
     }
 
     private fun cekJawaban(isCorrect: Boolean) {
-        var isAnswered = true
-
         val mediaPlayer: MediaPlayer
         val imageRes: Int
 
         if (isCorrect) {
+            skorBenar++
             mediaPlayer = MediaPlayer.create(this, R.raw.sound_benar) // Suara benar
             imageRes = R.drawable.asset_notif_benar_nulis // Gambar jawaban benar
         } else {
+            skorSalah++
             mediaPlayer = MediaPlayer.create(this, R.raw.sound_salah) // Suara salah
             imageRes = R.drawable.asset_notif_salah_nulis // Gambar jawaban salah
         }
+
         mediaPlayer.start() // Mainkan suara
 
+        // Hitung total skor dengan batas maksimal 100
+        val skorTotal = ((skorBenar.toDouble() / totalSoal) * 100).roundToInt()
+
         // Tampilkan dialog dengan gambar
-        tampilkanDialogJawaban(imageRes)
+        val dialog = tampilkanDialogJawaban(imageRes)
+
+        // Saat dialog ditutup, lanjutkan ke soal berikutnya atau ke SkorActivity jika ini soal terakhir
+        if (isSoalTerakhir()) {
+            submitNilaiMenulisToAPI(skorTotal, true) // Kirim nilai dan tandai sebagai soal terakhir
+        } else {
+            tampilkanSoalBerikutnya() // Lanjutkan ke soal berikutnya
+        }
 
         // Lepaskan media player setelah selesai diputar
         mediaPlayer.setOnCompletionListener { mp -> mp.release() }
     }
+
+    // Fungsi untuk mengecek apakah ini soal terakhir
+    private fun isSoalTerakhir(): Boolean {
+        return nomorSoalSaatIni >= totalSoal - 1
+    }
+
+    // Fungsi untuk menampilkan soal berikutnya
+    private fun tampilkanSoalBerikutnya() {
+        nomorSoalSaatIni++
+        updateUI()
+    }
+
+    // Simpan Nilai Ke Database untuk Kuis Menulis Aksara Swara
+    private fun submitNilaiMenulisToAPI(nilai: Int, isSoalTerakhir: Boolean) {
+        val sharedPref = getSharedPreferences("UserData", MODE_PRIVATE)
+        val nis = sharedPref.getString("NIS", null) // Ambil NIS dari SharedPreferences
+
+        if (nis.isNullOrEmpty()) {
+            Log.e("SESSION_ERROR", "NIS tidak ditemukan dalam sesi")
+            return
+        }
+
+        val tanggal = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()) // Format tanggal hari ini
+        val nilaiRequest = NilaiRequest(nis, nilai, tanggal) // Buat request data untuk API
+
+        ApiClient.instance.simpanNilaiMenulisSwara(nilaiRequest).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    val responseBody = response.body()?.string() ?: "Response kosong"
+                    Log.d("API_RESPONSE", "Raw Response: $responseBody")
+
+                    if (response.isSuccessful) {
+                        Log.d("API_SUCCESS", "Nilai berhasil disimpan!")
+                        Toast.makeText(this@KuisMenulisSwaraActivity, "Nilai berhasil disimpan!", Toast.LENGTH_SHORT).show()
+
+                        if (isSoalTerakhir) {
+                            // Jika ini soal terakhir, baru pindah ke SkorActivity
+                            val intent = Intent(this@KuisMenulisSwaraActivity, SkorActivity::class.java)
+                            intent.putExtra("JUMLAH_BENAR", skorBenar)
+                            intent.putExtra("JUMLAH_SALAH", skorSalah)
+                            intent.putExtra("SKOR_TOTAL", nilai)
+                            intent.putExtra("JENIS_KUIS", "menulis_swara")
+                            startActivity(intent)
+                            finish()
+                        }
+                    } else {
+                        val errorBody = response.errorBody()?.string()
+                        Log.e("API_ERROR", "Gagal menyimpan nilai: $errorBody")
+
+                        if (errorBody.isNullOrEmpty()) {
+                            Log.e("API_ERROR", "Kemungkinan response dari API tidak valid atau bukan JSON")
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e("API_EXCEPTION", "Error parsing response: ${e.message}")
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.e("API_FAILURE", "Error: ${t.message}")
+            }
+        })
+    }
+
 
     private fun tampilkanDialogJawaban(imageRes: Int) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_feedback_kuis, null)
@@ -347,7 +434,7 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
         val imgJawaban = dialogView.findViewById<ImageView>(R.id.imgJawaban)
         imgJawaban.setImageResource(imageRes)
 
-        // Atur dialog agar otomatis hilang setelah 2 detik dan lanjut ke soal berikutnya
+        // Atur dialog agar otomatis hilang setelah 2 detik
         Handler(Looper.getMainLooper()).postDelayed({
             alertDialog.dismiss()
         }, 1500) // 1500ms = 1.5 detik
@@ -394,12 +481,12 @@ class KuisMenulisSwaraActivity : AppCompatActivity() {
             // Cek apakah titik berada di dalam poligon (menggunakan aturan ray-casting)
             val insidePolygon = intersections % 2 == 1
 
-//            // Tambahkan toleransi dengan membandingkan jarak titik user dengan titik referensi
-//            val closeEnough = referencePoints.any { refPoint ->
-//                distance(userPoint, refPoint) <= tolerance
-//            }
+            // Tambahkan toleransi dengan membandingkan jarak titik user dengan titik referensi
+            val closeEnough = referencePoints.any { refPoint ->
+                distance(userPoint, refPoint) <= tolerance
+            }
 
-            if (insidePolygon) {
+            if (insidePolygon || closeEnough) {
                 correctPoints++
             }
         }

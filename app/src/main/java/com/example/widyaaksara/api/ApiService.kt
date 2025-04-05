@@ -19,41 +19,52 @@ interface ApiService {
     @POST("login")
     fun login(@Body loginRequest: LoginRequest): Call<LoginResponse>
 
-    //Kuis Aksara Ke Latin
+    //Menampilkan Aksara Swara di Fitur Menulis
+    @GET("aksara-swara")
+    fun getAksaraSwara(): Call<AksaraResponse>
+
+    //Menampilkan Aksara Ngalagena di Fitur Menulis
+    @GET("aksara-ngalagena")
+    fun getAksaraNgalagena(): Call<AksaraResponse>
+
+    //Kuis Terjemahan Aksara Ke Latin
     @GET("quiz")
     fun getKuis(): Call<KuisResponse>
 
-    //Kuis Latin Ke Aksara
+    //Kuis Terjemahan Latin Ke Aksara
     @GET("kuis")
     fun getKuisLatinKeAksara(): Call<KuisResponse>
 
-    //Nilai Kuis Aksara Ke Latin
+    //Kuis Menulis Aksara Swara
+    @GET("menulis-aksara-swara")
+    fun getMenulisAksaraSwara(): Call<AksaraResponse>
+
+    //Kuis Menulis Aksara Ngalagena
+    @GET("menulis-aksara-ngalagena")
+    fun getMenulisAksaraNgalagena(): Call<AksaraResponse>
+
+    //Nilai Kuis Terjemahan Aksara Ke Latin
     @POST("nilai-kuis")
     fun simpanNilai(@Body nilaiRequest: NilaiRequest): Call<ResponseBody>
     @Headers("Cache-Control: no-cache")
     @GET("nilai-kuis/{NIS}")
     fun getNilaiKuis(@Path("NIS") NIS: String): Call<NilaiResponse>
 
-    //Nilai Kuis Latin Ke Aksara
+    //Nilai Kuis Terjemahan Latin Ke Aksara
     @POST("nilai-latin-ke-aksara")
     fun simpanNilaiLatin(@Body nilaiRequest: NilaiRequest): Call<ResponseBody>
     @GET("nilai-latin-ke-aksara/{NIS}")
     fun getNilaiKuisLatinKeAksara(@Path("NIS") NIS: String): Call<NilaiResponse>
 
-    //Menampilkan Aksara Swara
-    @GET("aksara-swara")
-    fun getAksaraSwara(): Call<AksaraResponse>
+    //Nilai Kuis Menulis Aksara Swara
+    @POST("nilai-menulis-swara")
+    fun simpanNilaiMenulisSwara(@Body nilaiRequest: NilaiRequest): Call<ResponseBody>
+    @GET("nilai-menulis-swara/{NIS}")
+    fun getNilaiKuisMenulisSwara(@Path("NIS") NIS: String): Call<NilaiResponse>
 
-    //Menampilkan Aksara Ngalagena
-    @GET("aksara-ngalagena")
-    fun getAksaraNgalagena(): Call<AksaraResponse>
-
-    //Nilai Menulis Aksara Swara
-
-    //Nilai Menulis Aksara Ngalagena
+    //Nilai Kuis Menulis Aksara Ngalagena
     @POST("nilai-menulis-ngalagena")
     fun simpanNilaiMenulisNgalagena(@Body nilaiRequest: NilaiRequest): Call<ResponseBody>
-
     @GET("nilai-menulis-ngalagena/{NIS}")
     fun getNilaiKuisMenulisNgalagena(@Path("NIS") NIS: String): Call<NilaiResponse>
 

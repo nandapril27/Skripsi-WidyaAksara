@@ -22,12 +22,12 @@ class InformasiBantuanActivity : AppCompatActivity() {
 
         // Data bantuan
         val listBantuan = listOf(
-            Bantuan(R.drawable.asset_card_menu_materi, "Cara Menggunakan Aplikasi", "Panduan dasar penggunaan aplikasi."),
-            Bantuan(R.drawable.asset_card_menu_menulis, "Cara Menulis Aksara", "Langkah-langkah menulis aksara dengan benar."),
-            Bantuan(R.drawable.asset_card_menu_kuis, "Kuis Terjemahan", "Informasi mengenai kuis terjemahan aksara."),
-            Bantuan(R.drawable.asset_card_menu_nilai, "Kuis Menulis", "Cara mengikuti kuis menulis aksara."),
-            Bantuan(R.drawable.asset_card_menu_informasi, "Pengaturan Akun", "Cara mengubah informasi akun pengguna."),
-            Bantuan(R.drawable.asset_card_menu_profil, "Lainnya", "Informasi tambahan mengenai aplikasi.")
+            Bantuan(R.drawable.asset_card_menu_materi, "MATERI", "Nyayogikeun pamekar literasi ngeunaan aksara Sunda jeung rupa-rupa wangun dasar aksara Sunda."),
+            Bantuan(R.drawable.asset_card_menu_menulis, "MENULIS", "Fitur pikeun latihan nulis aksara Sunda maké widang tulis interaktif jeung panduan penulisan. Sarta nerapkeun validasi ngagunakeun algoritma PIP pikeun nalungtik katepatan pola tulisan."),
+            Bantuan(R.drawable.asset_card_menu_kuis, "KUIS", "Kuis Menulis, pikeun ngalatih katepatan tulisan aksara sunda.\nKuis Terjemahan, nyaeta soal PG pikeun nguji kamampuh maca jeung ngartikeun aksara Sunda."),
+            Bantuan(R.drawable.asset_card_menu_nilai, "NILAI", "Nampilkeun  riwayat nilai kuis sanggeus réngsé latihan, kaasup skor jeung waktu"),
+            Bantuan(R.drawable.asset_card_menu_informasi, "INFORMASI", "Nampilkeun informasi ngeunaan modul ajar, menu dina aplikasi jeung profil nu ngadamel aplikasi."),
+            Bantuan(R.drawable.asset_card_menu_profil, "PROFIL", "Nampilkeun data siswa, saperti NIS jeung Nama.")
         )
 
         // Atur RecyclerView

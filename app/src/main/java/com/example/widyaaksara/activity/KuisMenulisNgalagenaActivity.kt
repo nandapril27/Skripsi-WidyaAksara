@@ -162,7 +162,7 @@ class KuisMenulisNgalagenaActivity : AppCompatActivity() {
     }
 
     private fun fetchAksaraData() {
-        ApiClient.instance.getAksaraNgalagena().enqueue(object : Callback<AksaraResponse> {
+        ApiClient.instance.getMenulisAksaraNgalagena().enqueue(object : Callback<AksaraResponse> {
             override fun onResponse(
                 call: Call<AksaraResponse>,
                 response: Response<AksaraResponse>

@@ -124,11 +124,12 @@
 
 
             <!-- Gambar Aksara -->
+            <!-- Gambar Aksara -->
             <ImageView
                 android:id="@+id/imageAksara"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="6dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
                 android:scaleType="fitCenter"
                 android:contentDescription="Gambar Aksara"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -150,7 +151,7 @@
                 app:layout_constraintStart_toStartOf="@id/imageAksara"
                 app:layout_constraintEnd_toEndOf="@id/imageAksara"
                 android:gravity="center"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="8dp"/>
 
             <!-- Tombol Next -->
             <ImageButton
