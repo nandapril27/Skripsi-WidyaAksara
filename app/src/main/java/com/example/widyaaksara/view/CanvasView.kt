@@ -17,7 +17,7 @@ class CanvasView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     //Coretan Menulis
     private val paint = Paint().apply {
         color = Color.BLACK
-        strokeWidth = 46f
+        strokeWidth = 50f
         style = Paint.Style.STROKE
         isAntiAlias = true  // Anti-aliasing untuk membuat garis halus
         strokeJoin = Paint.Join.ROUND  // Membuat sudut garis lebih smooth

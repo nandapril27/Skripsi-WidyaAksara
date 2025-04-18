@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:src="@drawable/asset_sunda_ke_latin"
+        android:src="@drawable/asset_latin_ke_sunda"
         app:layout_constraintTop_toBottomOf="@id/garis"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"

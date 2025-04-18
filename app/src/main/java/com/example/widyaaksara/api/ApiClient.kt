@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient {
-    private const val BASE_URL = "http://192.168.123.139:8000/api/"
+    private const val BASE_URL = "https://widyaaksara.ullearning.my.id/api/"
 
     // Tambahkan Logging untuk melihat request dan response di Logcat
     private val loggingInterceptor = HttpLoggingInterceptor().apply {

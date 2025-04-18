@@ -52,7 +52,7 @@
         android:id="@+id/card_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/asset_sunda_ke_latin"
+        android:src="@drawable/asset_latin_ke_sunda"
        android:layout_below="@+id/garis"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"
