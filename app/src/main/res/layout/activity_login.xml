@@ -77,31 +77,41 @@
         android:textColor="#FFFFFF"
         android:textSize="16sp" />
 
-    <!-- Container untuk kedua logo -->
+    <!-- Container untuk ketiga logo -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnLogin"
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
-        <!-- Logo SMK 3 -->
+        <!-- Logo SMK3 -->
         <ImageView
             android:id="@+id/imgLeft"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/asset_logo_smk3"
-            android:contentDescription="Left Image"
-            android:layout_marginEnd="20dp" />
+            android:contentDescription="Logo SMK3"
+            android:layout_marginEnd="12dp" />
 
-        <!-- Logo Uniku -->
+        <!-- Logo UNIKU -->
+        <ImageView
+            android:id="@+id/imgCenter"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/asset_logo_uniku"
+            android:contentDescription="Logo UNIKU"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Logo FKOM -->
         <ImageView
             android:id="@+id/imgRight"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/asset_logo_uniku"
-            android:contentDescription="Right Image" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/asset_logo_fkom"
+        android:contentDescription="Logo FKOM" />
     </LinearLayout>
 
 
